@@ -1,7 +1,8 @@
 .page {
   background-color: #fcf5e5;
   min-height: 100vh;
-  font-family: "Poppins", "Arial", sans-serif;
+  font-family: "Poppins", "Arial", "Helvetica", sans-serif;
+  color: #212121b2;
 }
 
 .page__section {
