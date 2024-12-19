@@ -13,7 +13,7 @@
   gap: 40px 20px;
 }
 
-@media screen and (max-width: 627px) {
+@media screen and (max-width: 643px) {
   .cards {
     max-width: 288px;
   }
