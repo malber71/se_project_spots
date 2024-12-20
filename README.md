@@ -4,11 +4,17 @@ An image sharing site with a gallery
 
 ## Description
 
-todo description
+A project to demonstrate proficiency in HTML, CSS, and responsive design.
 
 ## Screen Shots
 
-todo
+Spots at 1440px wide
+
+<img src="./images/demo/spots-1440.png" alt="Spots at 1440px wide" width="300px" />
+
+Spots at 320px wide
+
+<img src="./images/demo/spots-320.png" alt="Spots at 1440px wide" width="300px" />
 
 ## Tech Stack
 
