@@ -20,4 +20,6 @@ todo
 
 This page is deployed to GitHub Pages
 
-- Deployment link
+- [Deployment link][def]
+
+[def]: https://malber71.github.io/se_project_spots/
