@@ -29,3 +29,5 @@ This page is deployed to GitHub Pages
 - [Deployment link][def]
 
 [def]: https://malber71.github.io/se_project_spots/
+
+- [Video description of project](https://drive.google.com/file/d/1foAmiQ-AZaCvWGxjkR5UdlLyrsrG4VRN/view?usp=sharing)
