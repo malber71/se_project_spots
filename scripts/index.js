@@ -60,3 +60,28 @@ function handleEditFormSubmit(evt) {
 
 closeModalButton.addEventListener("click", closeModal);
 editFormElement.addEventListener("submit", handleEditFormSubmit);
+
+const cardTemplate = document.querySelector("#card-template");
+const cardsList = document.querySelector(".cards__list");
+
+function getCardElement(data) {
+  const cardElement = cardTemplate.content
+    .querySelector(".card")
+    .cloneNode(true);
+
+  const cardNameEl = cardElement.querySelector(".card__title");
+  cardNameEl.textContent = data.name;
+
+  const cardImage = cardElement.querySelector(".card__image");
+  cardImage.src = data.link;
+
+  const cardImageAlt = cardElement.querySelector(".card__image");
+  cardImageAlt.alt = data.name;
+
+  return cardElement;
+}
+
+for (let i = 0; i < initialCards.length; i++) {
+  const cardElement = getCardElement(initialCards[i]);
+  cardsList.prepend(cardElement);
+}
