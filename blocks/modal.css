@@ -62,7 +62,7 @@
 
 .modal__input {
   padding: 16px 12px;
-  font-style: 20px;
+  font-size: 20px;
   line-height: 20px;
   border-radius: 8px;
   cursor: pointer;
@@ -81,7 +81,7 @@
   border-radius: 8px;
   color: #fcf5e5;
   font-weight: 500;
-  font-style: 16px;
+  font-size: 16px;
   cursor: pointer;
 }
 
