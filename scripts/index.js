@@ -64,11 +64,6 @@ editFormElement.addEventListener("submit", function (evt) {
   closeModal(editProfileModal);
 });
 
-addCardFormEl.addEventListener("submit", function (evt){
-  evt.preventDefault(default);
-
-});
-
 const cardTemplate = document.querySelector("#card-template").content.querySelector(".card");
 
 const cardsList = document.querySelector(".cards__list");
