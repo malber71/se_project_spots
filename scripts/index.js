@@ -61,12 +61,12 @@ function handleEditFormSubmit(evt) {
 closeModalButton.addEventListener("click", closeModal);
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 
-const cardTemplate = document.querySelector("#card-template").content.querySelector(".card");
-
+const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 
 function getCardElement(data) {
-  const cardElement = cardTemplate
+  const cardElement = cardTemplate.content
+    .querySelector(".card")
     .cloneNode(true);
 
   const cardNameEl = cardElement.querySelector(".card__title");
@@ -79,13 +79,12 @@ function getCardElement(data) {
   return cardElement;
 }
 
-initialCards.forEach(function(item) {
-  const cardElement = getCardElement(item);
+for (let i = 0; i < initialCards.length; i++) {
+  const cardElement = getCardElement(initialCards[i]);
   cardsList.append(cardElement);
-});
+}
 
 initialCards.forEach(function (item) {
   console.log(item.name);
   console.log(item.link);
 });
-
