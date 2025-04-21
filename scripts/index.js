@@ -25,6 +25,8 @@ const initialCards = [
   },
 ];
 
+//profile-edit modal
+
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileName = document.querySelector(".profile__name");
 const profileDesc = document.querySelector(".profile__description");
@@ -64,9 +66,19 @@ editProfFormElement.addEventListener("submit", function (evt) {
   closeModal(editProfileModal);
 });
 
+//new-post modal
+
 const editNewPostBtn = document.querySelector(".profile__add-button");
 const editNewPostModal = document.querySelector("#new-post-modal");
 const editNewPostCloseBtn = editNewPostModal.querySelector(".modal__close-btn");
+
+const editNewPostElement = editNewPostModal.querySelector(".modal__form");
+const editLinkInput = editNewPostModal.querySelector(
+  "#card-image-input"
+);
+const editCaptionInput = editNewPostModal.querySelector(
+  "#card-caption-input"
+);
 
 editNewPostBtn.addEventListener("click", function () {
   openModal(editNewPostModal);
@@ -77,17 +89,7 @@ editNewPostCloseBtn.addEventListener("click", function () {
 });
 
 
-const editNewPostElement = editNewPostModal.querySelector(".modal__form");
-const editLinkInput = editNewPostModal.querySelector(
-  "#card-image-input"
-);
-const editCaptionInput = editNewPostModal.querySelector(
-  "#card-caption-input"
-);
-const editNewPostSave = editNewPostModal.querySelector(".modal__submit-btn");
 
-const editCardLink = editNewPostModal.querySelector("#card-image-input");
-const editCardCaption = editNewPostModal.querySelector("#card-caption-input");
 
 editNewPostElement.addEventListener("submit", function(evt) {
   evt.preventDefault()
@@ -134,8 +136,4 @@ initialCards.forEach(function(item) {
   cardsList.append(cardElement);
 });
 
-initialCards.forEach(function (item) {
-  console.log(item.name);
-  console.log(item);
-});
 
