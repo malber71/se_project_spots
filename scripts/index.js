@@ -66,8 +66,17 @@ editProfFormElement.addEventListener("submit", function (evt) {
 
 const editNewPostBtn = document.querySelector(".profile__add-button");
 const editNewPostModal = document.querySelector("#new-post-modal");
+const editNewPostCloseBtn = editNewPostModal.querySelector(".modal__close-btn");
 
 
+
+editNewPostBtn.addEventListener("click", function () {
+  openModal(editNewPostModal);
+});
+
+editNewPostCloseBtn.addEventListener("click", function () {
+  closeModal(editNewPostModal);
+});
 
 
 //card iteration scripts
