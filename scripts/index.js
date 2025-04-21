@@ -68,8 +68,6 @@ const editNewPostBtn = document.querySelector(".profile__add-button");
 const editNewPostModal = document.querySelector("#new-post-modal");
 const editNewPostCloseBtn = editNewPostModal.querySelector(".modal__close-btn");
 
-
-
 editNewPostBtn.addEventListener("click", function () {
   openModal(editNewPostModal);
 });
@@ -77,6 +75,38 @@ editNewPostBtn.addEventListener("click", function () {
 editNewPostCloseBtn.addEventListener("click", function () {
   closeModal(editNewPostModal);
 });
+
+
+const editNewPostElement = editNewPostModal.querySelector(".modal__form");
+const editLinkInput = editNewPostModal.querySelector(
+  "#card-image-input"
+);
+const editCaptionInput = editNewPostModal.querySelector(
+  "#card-caption-input"
+);
+const editNewPostSave = editNewPostModal.querySelector(".modal__submit-btn");
+
+const editCardLink = editNewPostModal.querySelector("#card-image-input");
+const editCardCaption = editNewPostModal.querySelector("#card-caption-input");
+
+editNewPostElement.addEventListener("submit", function(evt) {
+  evt.preventDefault()
+
+  const newCard = {
+    name: editCaptionInput.value,
+    link: editLinkInput.value
+  };
+  
+  const cardElement = getCardElement(newCard);
+  cardsList.prepend(cardElement);  // adds the new card to the beginning of the list
+  
+  closeModal(editNewPostModal);
+  editNewPostElement.reset();  // clears the form
+
+
+});
+
+
 
 
 //card iteration scripts
