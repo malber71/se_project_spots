@@ -37,6 +37,7 @@
           <ul class="cards__list">
             <template id="card-template">
               <li class="card">
+                <button class="card__delete-button" type="button"></button>
                 <img src="" alt="" class="card__image" />
                 <div class="card__content">
                   <h2 class="card__title"></h2>
@@ -106,6 +107,17 @@
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
+        </div>
+      </div>
+      <div class="modal" id="preview-modal">
+        <div class="modal__preview-container">
+          <button type="button" class="modal__preview-close-btn" id="close-preview-modal">
+            <img src="./images/preview-close-btn.svg" alt="close button" />
+          </button>
+          <img src="https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg" alt="" class="modal__preview-image" />
+          
+            <p class="modal__preview-caption">Preview Title</p>
+          
         </div>
       </div>
     </div>

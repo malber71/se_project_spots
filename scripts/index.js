@@ -1,5 +1,9 @@
 const initialCards = [
   {
+    name: "Golden Gate Bridge",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg"
+  },
+  {
     name: "Val Thorens",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
   },
@@ -117,6 +121,7 @@ const cardTemplate = document.querySelector("#card-template").content.querySelec
 
 const cardsList = document.querySelector(".cards__list");
 
+
 function getCardElement(data) {
   const cardElement = cardTemplate
     .cloneNode(true);
@@ -127,13 +132,24 @@ function getCardElement(data) {
   const cardImage = cardElement.querySelector(".card__image");
   cardImage.src = data.link;
   cardImage.alt = data.name;
-
+ 
+  //like button
+ 
   const cardLikeBtnEL = cardElement.querySelector(".card__like-button");
   cardLikeBtnEL.addEventListener("click", () => {
     cardLikeBtnEL.classList.toggle("card__like-button_liked");
   });
+  
+  const cardDeleteBtnEl = cardElement.querySelector(".card__delete-button");
+  
+  //delete button
 
-  return cardElement;
+  cardDeleteBtnEl.addEventListener("click", () => {
+    cardElement.remove();
+     });
+
+
+    return cardElement;
 }
 
 initialCards.forEach(function(item) {
