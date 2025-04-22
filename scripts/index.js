@@ -112,8 +112,12 @@ editNewPostElement.addEventListener("submit", function(evt) {
 
 });
 
+//preview modal variables
 
-
+const previewModal =  document.querySelector("#preview-modal");
+const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
+const previewModalImageEl = previewModal.querySelector(".modal__preview-image");
+const previewModalCaptionEl = previewModal.querySelector(".modal__preview-caption");
 
 //card iteration scripts
 
@@ -129,9 +133,9 @@ function getCardElement(data) {
   const cardNameEl = cardElement.querySelector(".card__title");
   cardNameEl.textContent = data.name;
 
-  const cardImage = cardElement.querySelector(".card__image");
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
+  const cardImageEl = cardElement.querySelector(".card__image");
+  cardImageEl.src = data.link;
+  cardImageEl.alt = data.name;
 
  
   //like button
@@ -148,7 +152,20 @@ function getCardElement(data) {
   cardDeleteBtnEl.addEventListener("click", () => {
     cardElement.remove();
      });
-     
+
+  //preview modal
+
+  cardImageEl.addEventListener("click", () => {
+    previewModalImageEl.src = data.link;
+    previewModalImageEl.alt = data.name;
+    previewModalCaptionEl.textContent = data.name;
+    openModal(previewModal);
+  });
+
+  previewModalCloseBtn.addEventListener("click", () => {
+    closeModal(previewModal);
+  });
+
   return cardElement;
 }
 
@@ -156,5 +173,8 @@ initialCards.forEach(function(item) {
   const cardElement = getCardElement(item);
   cardsList.append(cardElement);
 });
+
+
+
 
 
