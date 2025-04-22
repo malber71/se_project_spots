@@ -103,7 +103,7 @@
 .modal__preview-image {
   border: none;
   border-radius: 8px;
-  max-width: 80vh;
+  max-width: 80vw;
   max-height: 80vh;
   object-fit: contain;
   display: block;
