@@ -132,6 +132,7 @@ function getCardElement(data) {
   const cardImage = cardElement.querySelector(".card__image");
   cardImage.src = data.link;
   cardImage.alt = data.name;
+<<<<<<< HEAD
  
   //like button
  
@@ -150,6 +151,10 @@ function getCardElement(data) {
 
 
     return cardElement;
+=======
+
+  return cardElement;
+>>>>>>> parent of 428a3ec (edits added like button active code)
 }
 
 initialCards.forEach(function(item) {
