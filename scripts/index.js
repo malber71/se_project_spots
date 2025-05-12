@@ -161,9 +161,7 @@ function getCardElement(data) {
     openModal(previewModal);
   });
 
-  previewModalCloseBtn.addEventListener("click", () => {
-    closeModal(previewModal);
-  });
+
 
   return cardElement;
 }
@@ -171,6 +169,10 @@ function getCardElement(data) {
 initialCards.forEach(function (item) {
   const cardElement = getCardElement(item);
   cardsList.append(cardElement);
+});
+
+previewModalCloseBtn.addEventListener("click", () => {
+  closeModal(previewModal);
 });
 
 // Add this function to handle clicks outside the modal
@@ -194,7 +196,7 @@ previewModal.addEventListener("click", (evt) => {
 });
 
 function handleEscClose(evt) {
-  if (event.key === "Escape") {
+  if (evt.key === "Escape") {
     const openedModal = document.querySelector(".modal_opened");
     if (openedModal) {
       closeModal(openedModal);
