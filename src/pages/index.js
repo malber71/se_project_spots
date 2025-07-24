@@ -1,29 +1,85 @@
-const initialCards = [
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
-  {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-];
+import "../pages/index.css";  
+
+import { enableValidation, validationConfig, resetValidation, disableButton } from "../scripts/validation.js";
+
+import Api from "../scripts/Api.js";
+
+import logoSrc from "../images/logo.svg";
+
+const logoImage = document.getElementById("image-logo");
+logoImage.src = logoSrc;
+
+import avatarSrc from "../images/avatar.jpg";
+
+const avatarImage = document.getElementById("image-avatar");
+avatarImage.src = avatarSrc;
+
+import pencilSrc from "../images/pencil.svg";
+
+const pencilImage = document.getElementById("image-pencil");
+pencilImage.src = pencilSrc;
+
+import plusSrc from "../images/plus.svg";
+
+const plusImage = document.getElementById("image-plus");
+plusImage.src = plusSrc;
+
+import closeSrc from "../images/close-icon.png";
+
+const closeImage = document.getElementById("image-close");
+closeImage.src = closeSrc;
+
+import addCloseSrc from "../images/close-icon.png";
+
+const addCloseImage = document.getElementById("image-preview-close-btn");
+addCloseImage.src = addCloseSrc;
+
+import prevCloseSrc from "../images/close-icon.png";
+
+const prevCloseImage = document.getElementById("image-add-close");
+prevCloseImage.src = prevCloseSrc;
+
+// const initialCards = [
+//   {
+//     name: "Val Thorens",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
+//   },
+//   {
+//     name: "Restaurant terrace",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
+//   },
+//   {
+//     name: "An outdoor cafe",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
+//   },
+//   {
+//     name: "A very long bridge, over the forest and through the trees",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
+//   },
+//   {
+//     name: "Tunnel with morning light",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
+//   },
+//   {
+//     name: "Mountain house",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+//   },
+// ];
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "354029a0-1df6-4418-8b39-f7f79d3ba100",
+    "Content-Type": "application/json"
+  }
+});
+
+api.getInitialCards().then((initialCards) => {
+  initialCards.forEach((item) => {
+  const cardElement = getCardElement(item);
+  cardsList.append(cardElement);
+});
+});
 
 //profile-edit modal
 
@@ -58,7 +114,7 @@ profileEditButton.addEventListener("click", function () {
   resetValidation(
     editProfileModal,
     [editModalNameInput, editModalDescInput],
-    settings
+    validationConfig
   );
   openModal(editProfileModal);
 });
@@ -106,7 +162,7 @@ editNewPostElement.addEventListener("submit", function (evt) {
   cardsList.prepend(cardElement); // adds the new card to the beginning of the list
 
   closeModal(editNewPostModal);
-  disableButton(editNewPostSubmitButton, settings);
+  disableButton(editNewPostSubmitButton, validationConfig);
   editNewPostElement.reset(); // clears the form
 });
 
@@ -166,10 +222,7 @@ function getCardElement(data) {
   return cardElement;
 }
 
-initialCards.forEach(function (item) {
-  const cardElement = getCardElement(item);
-  cardsList.append(cardElement);
-});
+
 
 previewModalCloseBtn.addEventListener("click", () => {
   closeModal(previewModal);
@@ -203,3 +256,5 @@ function handleEscClose(evt) {
     }
   }
 }
+
+enableValidation(validationConfig);
