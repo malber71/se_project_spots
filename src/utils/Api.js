@@ -28,7 +28,7 @@ class Api {
       Promise.reject(`Error ${res.status}`);
     });
   }
-editUserInfo({ name, about }) {
+  editUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
@@ -50,7 +50,7 @@ editUserInfo({ name, about }) {
       headers: this._headers,
       // Send the data in the body as a JSON string.
       body: JSON.stringify({
-       avatar,
+        avatar,
       }),
     }).then((res) => {
       if (res.ok) {
@@ -59,7 +59,7 @@ editUserInfo({ name, about }) {
       Promise.reject(`Error ${res.status}`);
     });
   }
-  editCardInfo({ name, link}) {
+  editCardInfo({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
@@ -68,6 +68,18 @@ editUserInfo({ name, about }) {
         name,
         link,
       }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      Promise.reject(`Error ${res.status}`);
+    });
+  }
+
+  removeCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: "DELETE",
+      headers: this._headers,
     }).then((res) => {
       if (res.ok) {
         return res.json();
