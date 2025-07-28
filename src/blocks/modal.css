@@ -17,10 +17,6 @@
   transition: visibility 0.5s linear, opacity 0.5s linear;
 }
 
-.modal__type_preview {
-  padding: 0 16px;
-}
-
 .modal_opened {
   display: flex;
   visibility: visible;
@@ -35,6 +31,18 @@
   box-sizing: border-box;
   position: relative;
   border-radius: 8px;
+}
+
+.modal__submit-btn {
+  width: 156px;
+  height: 52px;
+  padding: 18px 0;
+  background-color: #212121;
+  border-radius: 8px;
+  color: #fcf5e5;
+  font-weight: 500;
+  font-style: 16px;
+  cursor: pointer;
 }
 
 .modal__close-btn {
@@ -70,6 +78,10 @@
   line-height: 17.6px;
 }
 
+.modal__type_preview {
+  padding: 0 16px;
+}
+
 .modal__preview-container {
   position: relative;
 }
@@ -78,9 +90,6 @@
   position: absolute;
   top: 0;
   right: -52.5px;
-  width: 40px;
-  height: 40px;
-  border: 0;
   opacity: 1;
 }
 
@@ -110,6 +119,74 @@
   display: block;
 }
 
+.modal__type_delete {
+  padding: 0 16px;
+}
+
+.modal__container_delete {
+  max-width: 630px;
+  min-height: 172px;
+}
+
+.modal__close-btn_type_delete {
+  position: absolute;
+  top: 0;
+  right: -52.5px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  opacity: 1;
+}
+
+.modal__close-btn_type_delete:hover {
+  opacity: 0.5;
+}
+
+.modal__delete-btns {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  list-style-type: none;
+}
+
+.modal__submit-btn_delete {
+  color: #212121;
+  font-size: 16px;
+  background-color: #ff6565;
+  border-width: 0;
+}
+
+.modal__submit-btn_delete:hover {
+  background-color: #ff3333;
+}
+
+.modal__submit-btn_delete_cancel {
+  color: #212121;
+  font-size: 16px;
+  background-color: #ffffff;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #212121;
+}
+
+.modal__submit-btn_delete_cancel:hover {
+  color: #ffffff;
+  font-size: 16px;
+  background-color: #212121;
+}
+
+.modal__title_delete {
+  margin: 0 0 32px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1;
+}
+
 .modal__input {
   padding: 16px 12px;
   font-style: 20px;
@@ -134,18 +211,6 @@
   opacity: 0.7;
   font-size: 16px;
   margin-top: 8px;
-}
-
-.modal__submit-btn {
-  width: 156px;
-  height: 52px;
-  padding: 18px 0;
-  background-color: #212121;
-  border-radius: 8px;
-  color: #fcf5e5;
-  font-weight: 500;
-  font-style: 16px;
-  cursor: pointer;
 }
 
 .modal__submit-btn_type_error {

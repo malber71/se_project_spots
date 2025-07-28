@@ -16,13 +16,14 @@
       <main class="content">
         <section class="profile page__section">
           <div class="profile__avatar-container">
-          <button class="profile__avatar-btn">
-            <img id="image-pencil-light" alt="Pencil icon" class="profile__pencil-icon">
-          </button>
-          <img
-            id="image-avatar"
-            class="profile__avatar"
-          />
+            <button class="profile__avatar-btn">
+              <img
+                id="image-pencil-light"
+                alt="Pencil icon"
+                class="profile__pencil-icon"
+              />
+            </button>
+            <img id="image-avatar" class="profile__avatar" />
           </div>
           <div class="profile__column">
             <h1 class="profile__name"></h1>
@@ -56,7 +57,7 @@
       <div class="modal" id="edit-profile-modal">
         <div class="modal__container">
           <button type="button" class="modal__close-btn" id="close-modal">
-            <img id="image-close" alt="close button" />
+            <img id="profile-modal-image-close" alt="close button" />
           </button>
           <h2 class="modal__title">Edit profile</h2>
           <form name="edit-profile" class="modal__form" novalidate>
@@ -147,25 +148,68 @@
         </div>
       </div>
       <div class="modal" id="avatar-modal">
-        <div class="modal__container">
-          <button type="button" class="modal__close-btn" id="avatar-close-modal">
+        <div class="modal__container modal__container_delete">
+          <button
+            type="button"
+            class="modal__close-btn"
+            id="avatar-close-modal"
+          >
             <img id="avatar-image-close" alt="close button" />
           </button>
-          <h2 class="modal__title">Edit avatar</h2>
-          <form name="edit-profile" class="modal__form" id="edit-avatar-form" novalidate>
+          <h2 class="modal__title">Edit profile avatar</h2>
+          <form
+            name="edit-profile"
+            class="modal__form"
+            id="edit-avatar-form"
+            novalidate
+          >
             <label for="profile-avatar-input" class="modal__label">
-              Avatar
+              Profile picture
               <input
                 id="profile-avatar-input"
+                type="url"
                 class="modal__input"
                 name="avatar"
-                placeholder="Avatar goes here"
+                placeholder="Paste the link to an image"
                 required
               />
               <span id="profile-avatar-input-error" class="modal__error"></span>
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
+        </div>
+      </div>
+      <div class="modal" id="delete-modal">
+        <div class="modal__container modal__container_delete">
+          <button
+            type="button"
+            class="modal__close-btn modal__close-btn_type_delete"
+            id="close-delete-modal"
+          >
+            <img id="delete-modal-close-btn" alt="close button" />
+          </button>
+          <h2 class="modal__title modal__title_delete">
+            Are you sure you want to delete this image?
+          </h2>
+          <ul class="modal__delete-btns">
+            <li>
+              <button
+                class="modal__submit-btn modal__submit-btn_delete"
+                type="submit"
+              >
+                Deleting...
+              </button>
+            </li>
+            <li>
+              <button
+                class="modal__submit-btn modal__submit-btn_delete_cancel"
+                type="buton"
+              >
+                Cancel
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </body>

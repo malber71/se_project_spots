@@ -36,15 +36,22 @@ plusImage.src = plusSrc;
 
 import closeSrc from "../images/close-icon.png";
 
-const closeImage = document.getElementById("image-close");
+const closeImage = document.getElementById("profile-modal-image-close");
 closeImage.src = closeSrc;
 
-const addCloseImage = document.getElementById("image-preview-close-btn");
+const addCloseImage = document.getElementById("image-add-close");
 addCloseImage.src = closeSrc;
 
-const prevCloseImage = document.getElementById("image-add-close");
-prevCloseImage.src = closeSrc;
+const deleteModalClose = document.getElementById("delete-modal-close-btn")
+deleteModalClose.src = closeSrc;
 
+import closeWhtSrc from "../images/close-icon-white.svg";
+
+const prevCloseImage = document.getElementById("image-preview-close-btn");
+prevCloseImage.src = closeWhtSrc;
+
+const deleteCloseImage = document.getElementById("delete-modal-close-btn");
+deleteCloseImage.src = closeWhtSrc;
 
 
 // const initialCards = [
@@ -206,10 +213,10 @@ editNewPostElement.addEventListener("submit", function (evt) {
 const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 const avatarModal = document.querySelector("#avatar-modal");
 const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-btn");
-const avatartElement = avatarModal.querySelector(".modal__form");
+const avatartForm = avatarModal.querySelector(".modal__form");
 const avatarSubmitButton =
   avatarModal.querySelector(".modal__submit-btn");
-const avatarInput = avatarModal.querySelector("#edit-avatar-form");
+const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 
 const avatarCloseImage = document.getElementById("avatar-image-close");
 avatarCloseImage.src = closeSrc;
@@ -217,8 +224,39 @@ avatarCloseImage.src = closeSrc;
 
 avatarModalBtn.addEventListener("click", function () {
   openModal(avatarModal);
+  disableButton(avatarSubmitButton, validationConfig);
 });
 
+
+
+avatarModalCloseBtn.addEventListener("click", function () {
+  closeModal(avatarModal);
+});
+
+avatartForm.addEventListener("submit", function (evt) {
+  evt.preventDefault();
+  api
+  .editAvatarInfo(avatarInput.value)
+  .then((data) => {
+  avatarImage.src = data.avatar;
+  closeModal(avatarModal);
+  })
+  .catch(console.error);
+
+});
+
+// delete modal
+const deleteModal = document.querySelector("#delete-modal");
+const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
+const deleteModalCancelBtn = deleteModal.querySelector(".modal__submit-btn_delete_cancel");
+
+deleteModalCloseBtn.addEventListener("click", function () {
+  closeModal(deleteModal);
+});
+
+deleteModalCancelBtn.addEventListener("click", function () {
+  closeModal(deleteModal);
+});
 
 //preview modal variables
 
@@ -234,8 +272,9 @@ const previewModalCaptionEl = previewModal.querySelector(
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
-
 const cardsList = document.querySelector(".cards__list");
+
+
 
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -259,7 +298,8 @@ function getCardElement(data) {
   //delete button
 
   cardDeleteBtnEl.addEventListener("click", () => {
-    cardElement.remove();
+    // cardElement.remove();
+    openModal(deleteModal);
   });
 
   //preview modal
@@ -285,7 +325,8 @@ function handleModalClick(evt, modal) {
   }
 }
 
-// Add event listeners for each modal
+// Event listeners for each modal for click outside and escape
+
 editProfileModal.addEventListener("click", (evt) => {
   handleModalClick(evt, editProfileModal);
 });
@@ -300,6 +341,10 @@ avatarModal.addEventListener("click", (evt) => {
 
 previewModal.addEventListener("click", (evt) => {
   handleModalClick(evt, previewModal);
+});
+
+deleteModal.addEventListener("click", (evt) => {
+  handleModalClick(evt, deleteModal);
 });
 
 function handleEscClose(evt) {
