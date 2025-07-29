@@ -43,6 +43,9 @@
   font-weight: 500;
   font-style: 16px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  min-width: 156px;
 }
 
 .modal__close-btn {
@@ -253,5 +256,18 @@
   }
   .modal__submit-btn {
     width: 100%;
+    flex-shrink: 0;
+  }
+  .modal__delete-btns {
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  .modal__submit-btn_delete {
+    flex-shrink: 0;
+  }
+
+  .modal__submit-btn_delete_cancel {
+    flex-shrink: 0;
   }
 }
