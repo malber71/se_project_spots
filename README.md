@@ -6,6 +6,8 @@ An image sharing site with a gallery
 
 A project to demonstrate proficiency in HTML, CSS, and responsive design.
 
+Additional functionality has been added to store profile and card data on a remote server as well as manage the information there with POST, PATCH, PUT, and DELETE methods.
+
 ## Screen Shots
 
 Spots at 1440px wide
@@ -21,6 +23,7 @@ Spots at 320px wide
 - HTML
 - CSS
 - Responsive design
+- API calls to a remote server to store profile and card data
 
 ## Deployment
 
