@@ -377,14 +377,17 @@ function getCardElement(data) {
     previewModalImageEl.alt = data.name;
     previewModalCaptionEl.textContent = data.name;
     openModal(previewModal);
+    previewModalCloseBtn.addEventListener("click", () => {
+      closeModal(previewModal);
+    });
   });
 
   return cardElement;
 }
 
-previewModalCloseBtn.addEventListener("click", () => {
-  closeModal(previewModal);
-});
+// previewModalCloseBtn.addEventListener("click", () => {
+//   closeModal(previewModal);
+// });
 
 // handle clicks and escape key outside a modal
 
