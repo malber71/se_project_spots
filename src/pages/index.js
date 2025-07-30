@@ -124,6 +124,14 @@ const editModalDescInput = editProfileModal.querySelector(
   "#profile-description-input"
 );
 
+// Handle modal button text on closure
+
+function submitCloser(buttonEvent, state, thingOne, thingTwo) {
+  setTimeout(() => {
+    setButtonText(buttonEvent, state, thingOne, thingTwo);
+  }, 1000);
+}
+
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscClose);
@@ -149,11 +157,12 @@ editProfCloseModalBtn.addEventListener("click", function () {
   closeModal(editProfileModal);
 });
 
+// edit Profile
+
 editProfFormElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
-  const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true);
+  setButtonText(evt.submitter, true);
 
   api
     .editUserInfo({
@@ -163,14 +172,11 @@ editProfFormElement.addEventListener("submit", function (evt) {
     .then((data) => {
       profileName.textContent = data.name;
       profileDesc.textContent = data.about;
-      // closeModal(editProfileModal);
+      closeModal(editProfileModal);
     })
     .catch(console.error)
     .finally(() => {
-      closeModal(editProfileModal);
-      setTimeout(() => {
-        setButtonText(submitBtn, false);
-      }, 1000);
+      submitCloser(evt.submitter, false);
     });
 });
 
@@ -197,8 +203,7 @@ editNewPostCloseBtn.addEventListener("click", function () {
 editNewPostElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
-  const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true);
+  setButtonText(evt.submitter, true);
 
   api
     .editCardInfo({ name: editCaptionInput.value, link: editLinkInput.value })
@@ -212,10 +217,7 @@ editNewPostElement.addEventListener("submit", function (evt) {
     })
     .catch(console.error)
     .finally(() => {
-      closeModal(editProfileModal);
-      setTimeout(() => {
-        setButtonText(submitBtn, false);
-      }, 1000);
+      submitCloser(evt.submitter, false);
     });
 });
 
@@ -243,8 +245,7 @@ avatarModalCloseBtn.addEventListener("click", function () {
 avatarForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
-  const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true);
+  setButtonText(evt.submitter, true);
 
   api
     .editAvatarInfo(avatarInput.value)
@@ -255,10 +256,7 @@ avatarForm.addEventListener("submit", function (evt) {
     })
     .catch(console.error)
     .finally(() => {
-      closeModal(editProfileModal);
-      setTimeout(() => {
-        setButtonText(submitBtn, false);
-      }, 1000);
+      submitCloser(evt.submitter, false);
     });
 });
 
@@ -284,8 +282,7 @@ deleteForm.addEventListener("click", function (evt) {
 });
 
 function handleDeleteSubmit(evt) {
-  const submitBtn = evt.target;
-  setButtonText(submitBtn, true, "Delete", "Deleting...");
+  setButtonText(evt.target, true, "Delete", "Deleting...");
 
   api
     .removeCard(selectedCardId)
@@ -295,12 +292,16 @@ function handleDeleteSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      closeModal(editProfileModal);
-      setTimeout(() => {
-        setButtonText(submitBtn, false, "Delete", "Deleting");
-      }, 1000);
+      submitCloser(evt.target, false, "Delete", "Deleting...");
     });
 }
+
+//card iteration variables
+
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".card");
+const cardsList = document.querySelector(".cards__list");
 
 //preview modal variables
 
@@ -313,37 +314,6 @@ const previewModalCaptionEl = previewModal.querySelector(
 
 //card iteration scripts
 
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".card");
-const cardsList = document.querySelector(".cards__list");
-
-let selectedCard;
-let selectedCardId;
-
-function handleDeleteCard(cardElement, data) {
-  selectedCard = cardElement;
-  selectedCardId = data._id;
-  openModal(deleteModal);
-}
-
-function handleLike(evt, data) {
-  const id = data._id;
-
-  if (data.isLiked) {
-    data.isLiked = false;
-  } else {
-    data.isLiked = true;
-  }
-
-  api
-    .handleLike(id, data.isLiked)
-    .then(() => {
-      evt.target.classList.toggle("card__like-button_liked");
-    })
-    .catch(console.error);
-}
-
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
 
@@ -353,6 +323,34 @@ function getCardElement(data) {
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
   const likeBtnState = data.isLiked;
+
+  // card functionality
+
+  let selectedCard;
+  let selectedCardId;
+
+  function handleDeleteCard(cardElement, data) {
+    selectedCard = cardElement;
+    selectedCardId = data._id;
+    openModal(deleteModal);
+  }
+
+  function handleLike(evt, data) {
+    const id = data._id;
+
+    if (data.isLiked) {
+      data.isLiked = false;
+    } else {
+      data.isLiked = true;
+    }
+
+    api
+      .handleLike(id, data.isLiked)
+      .then(() => {
+        evt.target.classList.toggle("card__like-button_liked");
+      })
+      .catch(console.error);
+  }
 
   //like button
 
@@ -372,20 +370,6 @@ function getCardElement(data) {
     handleDeleteCard(cardElement, data)
   );
 
-  // deleteForm.addEventListener("click", function () {
-  //   handleDeleteSubmit();
-  // });
-
-  // function handleDeleteSubmit() {
-  //   api
-  //     .removeCard(selectedCardId)
-  //     .then(() => {
-  //       selectedCard.remove();
-  //       closeModal(deleteModal);
-  //     })
-  //     .catch(console.error);
-  // }
-
   //preview modal
 
   cardImageEl.addEventListener("click", () => {
@@ -402,7 +386,7 @@ previewModalCloseBtn.addEventListener("click", () => {
   closeModal(previewModal);
 });
 
-// Add this function to handle clicks outside the modal
+// handle clicks and escape key outside a modal
 
 function handleModalClick(evt, modal) {
   if (evt.target === modal) {
@@ -410,7 +394,16 @@ function handleModalClick(evt, modal) {
   }
 }
 
-// Event listeners for each modal for click outside and escape
+function handleEscClose(evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    if (openedModal) {
+      closeModal(openedModal);
+    }
+  }
+}
+
+// Event listeners for each modal
 
 editProfileModal.addEventListener("click", (evt) => {
   handleModalClick(evt, editProfileModal);
@@ -431,15 +424,6 @@ previewModal.addEventListener("click", (evt) => {
 deleteModal.addEventListener("click", (evt) => {
   handleModalClick(evt, deleteModal);
 });
-
-function handleEscClose(evt) {
-  if (evt.key === "Escape") {
-    const openedModal = document.querySelector(".modal_opened");
-    if (openedModal) {
-      closeModal(openedModal);
-    }
-  }
-}
 
 // Enable validation
 
