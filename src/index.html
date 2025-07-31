@@ -7,30 +7,33 @@
     <meta name="author" content="Michael Alber" />
     <meta name="keywords" content="HTML, CSS, IMAGES" />
     <title>Spots</title>
-    <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img src="./images/logo.svg" alt="Spots Logo" class="header__logo" />
+        <img id="image-logo" alt="Spots Logo" class="header__logo" />
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="./images/avatar.jpg"
-            alt="Bessie Coleman"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-container">
+            <button class="profile__avatar-btn">
+              <img
+                id="image-pencil-light"
+                alt="Pencil icon"
+                class="profile__pencil-icon"
+              />
+            </button>
+            <img id="image-avatar" class="profile__avatar" />
+          </div>
           <div class="profile__column">
-            <h1 class="profile__name">Bessie Coleman</h1>
-            <p class="profile__description">Civil Aviator</p>
+            <h1 class="profile__name"></h1>
+            <p class="profile__description"></p>
             <button type="button" class="profile__edit-button">
-              <img src="./images/pencil.svg" alt="Pencil icon" />Edit Profile
+              <img id="image-pencil" alt="Pencil icon" />Edit Profile
             </button>
           </div>
           <button class="profile__add-button">
-            <img src="./images/plus.svg" alt="plus icon" />New Post
+            <img id="image-plus" alt="plus icon" />New Post
           </button>
         </section>
         <section class="cards page__section">
@@ -54,7 +57,7 @@
       <div class="modal" id="edit-profile-modal">
         <div class="modal__container">
           <button type="button" class="modal__close-btn" id="close-modal">
-            <img src="./images/close-icon.png" alt="close button" />
+            <img id="profile-modal-image-close" alt="close button" />
           </button>
           <h2 class="modal__title">Edit profile</h2>
           <form name="edit-profile" class="modal__form" novalidate>
@@ -98,7 +101,7 @@
             class="modal__close-btn"
             id="new-post-close-modal"
           >
-            <img src="./images/close-icon.png" alt="close button" />
+            <img id="image-add-close" alt="close button" />
           </button>
           <h2 class="modal__title">New post</h2>
           <form name="new-post" class="modal__form" novalidate>
@@ -121,7 +124,7 @@
                 class="modal__input"
                 placeholder="Type your caption"
                 minlength="2"
-                maxlength="30"
+                maxlength="300"
                 required
               />
               <span id="card-caption-input-error" class="modal__error"></span>
@@ -137,15 +140,77 @@
             class="modal__close-btn modal__close-btn_type_preview"
             id="close-preview-modal"
           >
-            <img src="./images/preview-close-btn.svg" alt="close button" />
+            <img id="image-preview-close-btn" alt="close button" />
           </button>
           <img src="#" alt="" class="modal__preview-image" />
 
           <p class="modal__preview-caption">Preview Title</p>
         </div>
       </div>
+      <div class="modal" id="avatar-modal">
+        <div class="modal__container modal__container_delete">
+          <button
+            type="button"
+            class="modal__close-btn"
+            id="avatar-close-modal"
+          >
+            <img id="avatar-image-close" alt="close button" />
+          </button>
+          <h2 class="modal__title">Edit profile avatar</h2>
+          <form
+            name="edit-profile"
+            class="modal__form"
+            id="edit-avatar-form"
+            novalidate
+          >
+            <label for="profile-avatar-input" class="modal__label">
+              Profile picture
+              <input
+                id="profile-avatar-input"
+                type="url"
+                class="modal__input"
+                name="avatar"
+                placeholder="Paste the link to an image"
+                required
+              />
+              <span id="profile-avatar-input-error" class="modal__error"></span>
+            </label>
+            <button type="submit" class="modal__submit-btn">Save</button>
+          </form>
+        </div>
+      </div>
+      <div class="modal" id="delete-modal">
+        <div class="modal__container modal__container_delete">
+          <button
+            type="button"
+            class="modal__close-btn modal__close-btn_type_delete"
+            id="close-delete-modal"
+          >
+            <img id="delete-modal-close-btn" alt="close button" />
+          </button>
+          <h2 class="modal__title modal__title_delete">
+            Are you sure you want to delete this image?
+          </h2>
+          <ul class="modal__delete-btns">
+            <li class="modal__delete-btn">
+              <button
+                class="modal__submit-btn modal__submit-btn_delete"
+                type="button"
+              >
+                Delete
+              </button>
+            </li>
+            <li class="modal__delete-btn">
+              <button
+                class="modal__submit-btn modal__submit-btn_delete_cancel"
+                type="button"
+              >
+                Cancel
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <script defer src="./scripts/validation.js"></script>
-    <script defer src="./scripts/index.js"></script>
   </body>
 </html>
