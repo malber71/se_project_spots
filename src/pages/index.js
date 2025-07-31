@@ -128,13 +128,7 @@ const editModalDescInput = editProfileModal.querySelector(
   "#profile-description-input"
 );
 
-// Handle modal button text on closure
-
-function submitCloser(buttonEvent, state, thingOne, thingTwo) {
-  setTimeout(() => {
-    setButtonText(buttonEvent, state, thingOne, thingTwo);
-  }, 1000);
-}
+// open and close modal functions
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -144,6 +138,14 @@ function openModal(modal) {
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscClose);
+}
+
+// Handle modal button text on closure
+
+function submitCloser(buttonEvent, state, thingOne, thingTwo) {
+  setTimeout(() => {
+    setButtonText(buttonEvent, state, thingOne, thingTwo);
+  }, 1000);
 }
 
 profileEditButton.addEventListener("click", function () {
