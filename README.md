@@ -4,9 +4,21 @@ An image sharing site with a gallery
 
 ## Description
 
-A project to demonstrate proficiency in HTML, CSS, and responsive design.
+A project to demonstrate proficiency in HTML, CSS, and responsive design. The site allows users to interactively and dynamically add a custom profile picture, add a personal name and description, and add, like, and delete images from the site. Functionality has been added to store profile and card data on a remote server as well as manage the information there with POST, PATCH, PUT, and DELETE methods.
 
-Additional functionality has been added to store profile and card data on a remote server as well as manage the information there with POST, PATCH, PUT, and DELETE methods.
+## Feature Highlights
+
+- Profile editing functionality
+- Add/delete cards
+- Image preview modals
+- Like functionality
+
+## Suggestions for improvement
+
+These are suggestions for the site that are outside of the project scope, but would increase functionality and interactivity.
+
+- Allowing users to edit card information through an additional modal. This could be accomplished with PATCH.
+- Currently the text limitation on the server for card caption descrtiptions is 30 characters. The site has CSS that handles text overflow. The server limit could be increased to allow users to add longer text descriptions. Alternatively there could be instruction on implementing custom validation for text greater than 30 characters. With the current design users hit a wall at 30 characters without getting an explanation for why they can't enter more text.
 
 ## Screen Shots
 
@@ -23,6 +35,10 @@ Spots at 320px wide
 - HTML
 - CSS
 - Responsive design
+- DOM manipulation
+- Event handling
+- Form validation
+- API integration
 - API calls to a remote server to store profile and card data
 
 ## Deployment
