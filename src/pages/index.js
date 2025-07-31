@@ -1,3 +1,5 @@
+// imports and image declarations
+
 import "../pages/index.css";
 
 import {
@@ -19,7 +21,6 @@ logoImage.src = logoSrc;
 import avatarSrc from "../images/avatar.jpg";
 
 const avatarImage = document.getElementById("image-avatar");
-// avatarImage.src = avatarSrc;
 
 import pencilLtSrc from "../images/pencil-light.svg";
 
@@ -54,6 +55,9 @@ prevCloseImage.src = closeWhtSrc;
 
 const deleteCloseImage = document.getElementById("delete-modal-close-btn");
 deleteCloseImage.src = closeWhtSrc;
+
+// original initial cards kept for historical reference and
+// available links for testing
 
 // const initialCards = [
 //   {
@@ -205,8 +209,10 @@ editNewPostElement.addEventListener("submit", function (evt) {
 
   setButtonText(evt.submitter, true);
 
+  const captionInputLimiter = editCaptionInput.value.slice(0, 30);
+
   api
-    .editCardInfo({ name: editCaptionInput.value, link: editLinkInput.value })
+    .editCardInfo({ name: captionInputLimiter, link: editLinkInput.value })
     .then((data) => {
       const cardElement = getCardElement(data);
       cardsList.prepend(cardElement); // adds the new card to the beginning of the list
@@ -314,6 +320,9 @@ const previewModalCaptionEl = previewModal.querySelector(
 
 //card iteration scripts
 
+let selectedCard;
+let selectedCardId;
+
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
 
@@ -325,9 +334,6 @@ function getCardElement(data) {
   const likeBtnState = data.isLiked;
 
   // card functionality
-
-  let selectedCard;
-  let selectedCardId;
 
   function handleDeleteCard(cardElement, data) {
     selectedCard = cardElement;
@@ -377,17 +383,10 @@ function getCardElement(data) {
     previewModalImageEl.alt = data.name;
     previewModalCaptionEl.textContent = data.name;
     openModal(previewModal);
-    previewModalCloseBtn.addEventListener("click", () => {
-      closeModal(previewModal);
-    });
   });
 
   return cardElement;
 }
-
-// previewModalCloseBtn.addEventListener("click", () => {
-//   closeModal(previewModal);
-// });
 
 // handle clicks and escape key outside a modal
 
@@ -426,6 +425,10 @@ previewModal.addEventListener("click", (evt) => {
 
 deleteModal.addEventListener("click", (evt) => {
   handleModalClick(evt, deleteModal);
+});
+
+previewModalCloseBtn.addEventListener("click", () => {
+  closeModal(previewModal);
 });
 
 // Enable validation
