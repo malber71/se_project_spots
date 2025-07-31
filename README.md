@@ -4,7 +4,7 @@ An image sharing site with a gallery
 
 ## Description
 
-A project to demonstrate proficiency in HTML, CSS, and responsive design. The site allows users to interactively and dynamically add a custom profile picture, add a personal name and description, and add, like, and delete images from the site. Functionality has been added to store profile and card data on a remote server as well as manage the information there with POST, PATCH, PUT, and DELETE methods.
+A project to demonstrate proficiency in HTML, CSS, javascript, and responsive design. The site allows users to interactively and dynamically add a custom profile picture, add a personal name and description, and add, like, and delete images from the site. Functionality has been added to store profile and card data on a remote server as well as manage the information there with POST, PATCH, PUT, and DELETE methods.
 
 ## Feature Highlights
 
