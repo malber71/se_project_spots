@@ -227,7 +227,7 @@ editNewPostElement.addEventListener("submit", function (evt) {
     });
 });
 
-// Avatar modal
+// Avatar modal scripts
 
 const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 const avatarModal = document.querySelector("#avatar-modal");
